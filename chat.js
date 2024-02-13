@@ -6,8 +6,11 @@
   };
   var history = [initialBotMessage];
 
+  const urlParams = new URLSearchParams(window.location.search);
+  const projectID = urlParams?.get("project_id");
+  const apiUrl = urlParams?.get("api_url");
   // API endpoint
-  var apiEndpoint = "https://bot.appblocks.com/api/chat";
+  var apiEndpoint = `${apiUrl}?${projectID}`;
 
   function FormatChatHistory(human, ai, previousChatHistory = "") {
     const newInteraction = `Human: ${human}\nAI: ${ai}`;
@@ -45,8 +48,8 @@
 
   var chatWidget = document.createElement("div");
   chatWidget.id = "chatWidget";
-  // chatWidget.style.display = "none";
-  chatWidget.style.display = "block";
+  chatWidget.style.display = "none";
+  // chatWidget.style.display = "block";
   chatWidget.style.position = "fixed";
   chatWidget.style.bottom = "20px";
   chatWidget.style.right = "20px";
